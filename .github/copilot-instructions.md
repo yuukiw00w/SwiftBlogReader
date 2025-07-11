@@ -1,0 +1,3 @@
+- テストコードと開発プロセスはt_wada氏のTDD手法に従ってください。
+- 設計はJohn Ousterhout氏のdeep module原則（小さなインターフェースで多くの複雑さを隠蔽）を好んでください。
+- Swift 6.2のSwift Concurrency（async/await等）を積極的に活用してください。

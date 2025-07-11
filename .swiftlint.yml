@@ -1,0 +1,14 @@
+opt_in_rules:
+  - all
+
+disabled_rules:
+  - closure_body_length # Previewなどclosureが長くなるものがあるため
+  - contrasted_opening_brace # SwiftFormatに任せるため
+  - explicit_acl # できる限りACLを省略したいため
+  - explicit_top_level_acl # できる限りACLを省略したいため
+  - explicit_type_interface # environmentで警告が出るため
+  - force_unwrapping # force unwrapは必要に応じて使用するため
+  - no_magic_numbers # placeholderの数などmagic numberとして必要なケースがあるため
+  - required_deinit # deinitをなるべく省略したいため
+  - trailing_closure # SwiftUIのViewで引数を省略しない方がわかりやすいケースがあるため
+  - trailing_comma # SwiftFormatに任せるため
