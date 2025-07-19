@@ -1,5 +1,5 @@
 import Foundation
-public import SwiftUI
+public import Observation
 
 @MainActor
 @Observable
