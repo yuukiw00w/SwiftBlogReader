@@ -100,7 +100,7 @@ extension FetchFeedStatus {
         )
         .environment(
             \.feedFetcher,
-            MockFeedFetcher(mockFetchSwiftOrgFeed: {
+            TestFeedFetcher(mockFetchSwiftOrgFeed: {
                 [
                     .init(
                         id: "1",

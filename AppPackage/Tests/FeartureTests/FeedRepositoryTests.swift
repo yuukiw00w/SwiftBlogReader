@@ -20,7 +20,7 @@ struct FeedRepositoryTests {
     ) -> FeedRepository {
         FeedRepository(
             modelContext: modelContext,
-            feedFetcher: MockFeedFetcher(mockFetchSwiftOrgFeed: { entries }),
+            feedFetcher: TestFeedFetcher(mockFetchSwiftOrgFeed: { entries }),
             htmlWrapper: HTMLAutoDarkModeWrapper(),
         )
     }
@@ -160,7 +160,7 @@ struct FeedRepositoryTests {
         let mockError = NSError(domain: "TestError", code: 123)
         let repo = FeedRepository(
             modelContext: context,
-            feedFetcher: MockFeedFetcher(
+            feedFetcher: TestFeedFetcher(
                 mockFetchSwiftOrgFeed: { throw mockError },
             ),
         )

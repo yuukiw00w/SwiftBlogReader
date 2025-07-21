@@ -20,7 +20,7 @@ struct FeedViewEventAcceptorTests {
     ) -> FeedRepository {
         FeedRepository(
             modelContext: modelContext,
-            feedFetcher: MockFeedFetcher(mockFetchSwiftOrgFeed: { entries }),
+            feedFetcher: TestFeedFetcher(mockFetchSwiftOrgFeed: { entries }),
             htmlWrapper: HTMLAutoDarkModeWrapper(),
         )
     }
@@ -137,7 +137,7 @@ struct FeedViewEventAcceptorTests {
         // 失敗するfetcherを渡す
         let repo = FeedRepository(
             modelContext: context,
-            feedFetcher: MockFeedFetcher(mockFetchSwiftOrgFeed: {
+            feedFetcher: TestFeedFetcher(mockFetchSwiftOrgFeed: {
                 throw URLError(.badServerResponse)
             }),
             htmlWrapper: HTMLAutoDarkModeWrapper(),
@@ -214,7 +214,7 @@ struct FeedViewEventAcceptorTests {
         var feedEntries = [entry1]
         let repo = FeedRepository(
             modelContext: context,
-            feedFetcher: MockFeedFetcher(mockFetchSwiftOrgFeed: { feedEntries }),
+            feedFetcher: TestFeedFetcher(mockFetchSwiftOrgFeed: { feedEntries }),
             htmlWrapper: HTMLAutoDarkModeWrapper(),
         )
         let eventAcceptor = FeedViewEventAcceptor(repository: repo) { event in
@@ -254,7 +254,7 @@ struct FeedViewEventAcceptorTests {
         // 遅延するfetcher
         let repo = FeedRepository(
             modelContext: context,
-            feedFetcher: MockFeedFetcher(mockFetchSwiftOrgFeed: {
+            feedFetcher: TestFeedFetcher(mockFetchSwiftOrgFeed: {
                 try await Task.sleep(nanoseconds: 300_000_000)
                 return [entry1]
             }),
