@@ -25,21 +25,19 @@ struct FeedView: View {
 
     var body: some View {
         if #available(iOS 26.0, *) {
-            NavigationSplitView {
-                FeedContentView(eventAcceptor: eventAcceptor, state: $state)
-            } detail: {
-                FeedDetailView(selected: state.selected)
-            }
-            .navigationTitle(title)
-            .navigationSubtitle(subtitle)
+            feed.navigationSubtitle(subtitle)
         } else {
-            NavigationSplitView {
-                FeedContentView(eventAcceptor: eventAcceptor, state: $state)
-            } detail: {
-                FeedDetailView(selected: state.selected)
-            }
-            .navigationTitle(title)
+            feed
         }
+    }
+
+    private var feed: some View {
+        NavigationSplitView {
+            FeedContentView(eventAcceptor: eventAcceptor, state: $state)
+        } detail: {
+            FeedDetailView(selected: state.selected)
+        }
+        .navigationTitle(title)
     }
 
     private var title: String {
