@@ -29,7 +29,7 @@ public struct FeedViewEventAcceptor {
                 } else {
                     updateViewState(.onFetchedFeed(cached))
                     let appendItems = try await repository.fetchNonCachedFeed(
-                        cached: cached
+                        cached: cached,
                     )
                     if !appendItems.isEmpty {
                         updateViewState(.onNewFeedAppended(appendItems))

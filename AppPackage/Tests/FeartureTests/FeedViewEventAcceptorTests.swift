@@ -44,7 +44,7 @@ struct FeedViewEventAcceptorTests {
                 ? URL(string: "https://example.com/\(id)")!
                 : URL(string: link!)!,
             author: author,
-            htmlContent: htmlContent ?? "html" + id
+            htmlContent: htmlContent ?? "html" + id,
         )
     }
 
@@ -189,7 +189,7 @@ struct FeedViewEventAcceptorTests {
         // updateEventsの最後がonItemSelectedでentry2であること
         let lastEvent = updateEvents.last
         let isItemSelected =
-            if case .onItemSelected(let item) = lastEvent {
+            if case let .onItemSelected(item) = lastEvent {
                 item.id == selectItem.id
             } else {
                 false
@@ -214,8 +214,7 @@ struct FeedViewEventAcceptorTests {
         var feedEntries = [entry1]
         let repo = FeedRepository(
             modelContext: context,
-            feedFetcher: MockFeedFetcher(mockFetchSwiftOrgFeed: { feedEntries }
-            ),
+            feedFetcher: MockFeedFetcher(mockFetchSwiftOrgFeed: { feedEntries }),
             htmlWrapper: HTMLAutoDarkModeWrapper(),
         )
         let eventAcceptor = FeedViewEventAcceptor(repository: repo) { event in

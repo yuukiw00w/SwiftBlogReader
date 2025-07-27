@@ -8,7 +8,7 @@ public struct FeedEntry: Equatable, Identifiable, Hashable {
     public var baseURL: URL
     public var author: String?
     public var htmlContent: String?
-    
+
     public init(id: String, title: String, link: URL, updatedDate: Date, baseURL: URL, author: String? = nil, htmlContent: String? = nil) {
         self.id = id
         self.title = title

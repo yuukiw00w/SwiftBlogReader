@@ -23,7 +23,7 @@ public final nonisolated class FeedItem: Identifiable, Hashable, Equatable {
         author: String?,
         content: String?,
         contentBaseURL: URL,
-        isRead: Bool = false
+        isRead: Bool = false,
     ) {
         self.id = id
         self.title = title
@@ -57,7 +57,7 @@ public final nonisolated class FeedItem: Identifiable, Hashable, Equatable {
 
     public func update(
         from entry: FeedEntry,
-        contentFactory: (String?) -> String?
+        contentFactory: (String?) -> String?,
     ) {
         title = entry.title
         link = entry.link

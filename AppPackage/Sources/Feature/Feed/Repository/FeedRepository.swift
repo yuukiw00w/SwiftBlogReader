@@ -31,7 +31,7 @@ public final class FeedRepository {
         cached: [FeedEntity],
         order: (FeedEntity, FeedEntity) -> Bool = {
             $0.updatedDate > $1.updatedDate
-        }
+        },
     ) async throws(FeedRepositoryError) -> [FeedEntity] {
         let entries: [FeedEntry]
         do {
@@ -50,7 +50,7 @@ public final class FeedRepository {
                 author: entry.author,
                 content: htmlWrapper(entry.htmlContent),
                 contentBaseURL: entry.baseURL,
-                isRead: cachedItem?.isRead ?? false
+                isRead: cachedItem?.isRead ?? false,
             )
             if cachedItem == nil {
                 appendFeed.append(.init(from: item))
@@ -69,8 +69,8 @@ public final class FeedRepository {
         do {
             let feed = try modelContext.fetch(
                 FetchDescriptor<FeedItem>(
-                    sortBy: [.init(\.updatedDate, order: .reverse)]
-                )
+                    sortBy: [.init(\.updatedDate, order: .reverse)],
+                ),
             )
             return feed.map { .init(from: $0) }
         } catch {
@@ -82,7 +82,7 @@ public final class FeedRepository {
         let id = entity.id
         let predicate = #Predicate<FeedItem> { $0.id == id }
         var fetchDescriptor = FetchDescriptor<FeedItem>(
-            predicate: predicate
+            predicate: predicate,
         )
         fetchDescriptor.fetchLimit = 1
         do {
@@ -99,4 +99,4 @@ public final class FeedRepository {
 // Root や Value が Sendable でも、KeyPath に含まれる subscript の引数が Sendable である保証がないため、
 // 自動的に Sendable にはならず、 @unchecked Sendable で暫定的に回避している
 extension KeyPath: @unchecked @retroactive Sendable
-where Root: Sendable, Value: Sendable {}
+    where Root: Sendable, Value: Sendable {}

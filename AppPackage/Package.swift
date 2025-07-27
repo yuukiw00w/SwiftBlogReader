@@ -25,8 +25,8 @@ let package = Package(
     products: [
         .library(
             name: "AppLibrary",
-            targets: [Target.feature.rawValue]
-        )
+            targets: [Target.feature.rawValue],
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/nmdias/FeedKit", from: "10.1.3"),
@@ -35,22 +35,22 @@ let package = Package(
         .target(
             name: Target.api.rawValue,
             dependencies: [
-                "FeedKit"
+                "FeedKit",
             ],
-            swiftSettings: defaultSwiftSettings
+            swiftSettings: defaultSwiftSettings,
         ),
         .target(
             name: Target.feature.rawValue,
             dependencies: [
-                .target(name: Target.api.rawValue)
+                .target(name: Target.api.rawValue),
             ],
-            swiftSettings: defaultSwiftSettings
+            swiftSettings: defaultSwiftSettings,
         ),
         .testTarget(
             name: "FeatureTests",
             dependencies: [
-                .target(name: Target.feature.rawValue)
-            ]
+                .target(name: Target.feature.rawValue),
+            ],
         ),
-    ]
+    ],
 )

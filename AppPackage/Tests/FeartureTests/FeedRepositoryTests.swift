@@ -44,7 +44,7 @@ struct FeedRepositoryTests {
                 ? URL(string: "https://example.com/\(id)")!
                 : URL(string: link!)!,
             author: author,
-            htmlContent: htmlContent ?? "html" + id
+            htmlContent: htmlContent ?? "html" + id,
         )
     }
 
@@ -65,7 +65,7 @@ struct FeedRepositoryTests {
             updatedDate: updatedDate,
             author: author,
             content: content ?? "html" + id,
-            contentBaseURL: URL(string: "https://example.com/")!
+            contentBaseURL: URL(string: "https://example.com/")!,
         )
     }
 
@@ -79,11 +79,11 @@ struct FeedRepositoryTests {
         #expect(result[0].id == "1", "返されたIDが'1'であること")
         #expect(
             result[0].content?.contains("<html>") == true,
-            "contentがHTMLラップされていること"
+            "contentがHTMLラップされていること",
         )
         #expect(
             result[0].content?.contains("html") == true,
-            "contentに元のhtml文字列が含まれていること"
+            "contentに元のhtml文字列が含まれていること",
         )
 
         let cached = try context.fetch(FetchDescriptor<FeedItem>())
@@ -116,7 +116,7 @@ struct FeedRepositoryTests {
         #expect(cached[0].author == entry.author, "著者が新しい値で上書きされていること")
         #expect(
             cached[0].content?.contains("new html") == true,
-            "contentが新しい値で上書きされていること"
+            "contentが新しい値で上書きされていること",
         )
     }
 
@@ -139,9 +139,9 @@ struct FeedRepositoryTests {
         let container = try makeInMemoryModelContainer()
         let context = container.mainContext
         // 固定日時で3件用意
-        let date1 = Date(timeIntervalSince1970: 3000)  // newest
+        let date1 = Date(timeIntervalSince1970: 3000) // newest
         let date2 = Date(timeIntervalSince1970: 2000)
-        let date3 = Date(timeIntervalSince1970: 1000)  // oldest
+        let date3 = Date(timeIntervalSince1970: 1000) // oldest
         let entry1 = makeFeedEntry(id: "1", updatedDate: date1)
         let entry2 = makeFeedEntry(id: "2", updatedDate: date2)
         let entry3 = makeFeedEntry(id: "3", updatedDate: date3)
@@ -161,8 +161,8 @@ struct FeedRepositoryTests {
         let repo = FeedRepository(
             modelContext: context,
             feedFetcher: MockFeedFetcher(
-                mockFetchSwiftOrgFeed: { throw mockError }
-            )
+                mockFetchSwiftOrgFeed: { throw mockError },
+            ),
         )
         await #expect(throws: (any Error).self, performing: {
             try await repo.fetchNonCachedFeed(cached: [])

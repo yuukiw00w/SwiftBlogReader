@@ -18,7 +18,7 @@ struct FeedIndexedEntityQuery: EntityQuery {
 
         let feed = try container.mainContext.fetch(
             FetchDescriptor<FeedItem>(
-                predicate: #Predicate { identifiers.contains($0.id) }
+                predicate: #Predicate { identifiers.contains($0.id) },
             ),
         )
 

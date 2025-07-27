@@ -2,7 +2,7 @@ import Foundation
 
 public struct HTMLAutoDarkModeWrapper {
     public init() {}
-    
+
     public func callAsFunction(_ content: String?) -> String? {
         guard let bodyContent = content else {
             return nil

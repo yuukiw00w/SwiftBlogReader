@@ -210,7 +210,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd BuildTools\n\nSDKROOT=(xcrun --sdk macosx --show-sdk-path)\nPROJECT_SOURCE_DIR=\"$SRCROOT/SwiftBlogReader\"\n\n#sh ../Scripts/setup-build-tools.sh\n\n${SRCROOT}/BuildTools/.build/release/swiftformat $PROJECT_SOURCE_DIR\n\nswift package plugin --allow-writing-to-package-directory --allow-writing-to-directory .. swiftlint $PROJECT_SOURCE_DIR\n";
+			shellScript = "cd BuildTools\n\nSDKROOT=(xcrun --sdk macosx --show-sdk-path)\nPROJECT_SOURCE_DIR=\"$SRCROOT/SwiftBlogReader\"\nPACKAGE_SOURCE_DIR=\"$SRCROOT/AppPackage/Sources\"\n\nswift package resolve\n\nswift run -c release swiftformat \"$PROJECT_SOURCE_DIR\"\nswift run -c release swiftformat \"$PACKAGE_SOURCE_DIR\"\n\nswift package plugin --allow-writing-to-package-directory --allow-writing-to-directory .. swiftlint $PROJECT_SOURCE_DIR\nswift package plugin --allow-writing-to-package-directory --allow-writing-to-directory .. swiftlint $PACKAGE_SOURCE_DIR\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

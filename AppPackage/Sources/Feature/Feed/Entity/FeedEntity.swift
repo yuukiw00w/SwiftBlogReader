@@ -19,7 +19,7 @@ public nonisolated struct FeedEntity: Identifiable, Hashable, Equatable, Sendabl
         author: String?,
         content: String?,
         contentBaseURL: URL,
-        isRead: Bool
+        isRead: Bool,
     ) {
         self.id = id
         self.title = title
